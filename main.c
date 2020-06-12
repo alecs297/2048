@@ -24,6 +24,7 @@ int main(void) {
     int** tab = NULL;
     time_t timer;
     srand ( time(NULL) );
+    atexit(clear_console);
 
     menu();
     n = saisie_taille();
@@ -48,6 +49,11 @@ int main(void) {
     } else {
         printf("\e[91m\e[1mAucun coup disponible!\e[0m\n\nVous avez perdu avec un score de \e[91m%d\e[0m\n\n\n", score);
     }
+    for (r = 0; r < n; r++) {
+        free(tab[r]);
+    }
     free(tab);
+    printf("\n\nAppuyez sur entrée pour quitter\n");
+    getchar();
     return 0;
 }
